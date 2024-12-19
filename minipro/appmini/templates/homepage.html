@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแรก | เว็บจองจักรยาน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .bike-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .bike-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 250px;
+            margin: 10px;
+            text-align: center;
+        }
+        .bike-card h3 {
+            margin: 10px 0;
+        }
+        .bike-card p {
+            margin: 5px 0;
+        }
+        .bike-card .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .bike-card .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ยินดีต้อนรับสู่เว็บจองจักรยาน</h1>
+    </header>
+
+    <div class="container">
+        <section class="bike-list">
+            <div class="bike-card">
+                <h3>รุ่น A</h3>
+                <p>จำนวน: 5 คัน</p>
+                <p>สถานะ: ในส่วนนี้ยังไม่ได้ทำ</p>
+                <a href="#" class="btn">จองตอนนี้</a>
+            </div>
+            <div class="bike-card">
+                {% for bike in bikes %}
+                    <h3>{{ bike.model_name }}</h3>  <!-- แสดงชื่อรุ่นจักรยาน -->
+                    <p>สถานะ: {% if bike.available %} ว่าง {% else %} ไม่ว่าง {% endif %}</p>
+                    <p>จำนวน: {{ bike.quantity }} คัน</p>  <!-- แสดงจำนวนคันที่ว่าง -->
+                    <a href="{% url 'bike_list' %}" class="btn">จองตอนนี้</a>  <!-- ปุ่มจอง -->
+                {% endfor %}
+            </div>
+            
+            
+
+        </section>
+    </div>
+</body>
+</html>
